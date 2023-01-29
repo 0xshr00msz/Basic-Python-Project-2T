@@ -46,8 +46,6 @@ class TimeClock:
                     file_handler.appendTimeOut(self.date.strftime("%I") +  ":" + self.date.strftime("%M") + self.date.strftime("%p"))
                 else:
                     print("Employee does not exist. Please register your name.")
-            else:
-                print('Invalid input. Please enter a number between 1 and 3.')
                 
             go_back = input('Do you want to go back to the menu? (y/n) ')
             if go_back.lower() == 'n':
