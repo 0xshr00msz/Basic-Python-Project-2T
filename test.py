@@ -27,10 +27,10 @@ class TimeClock:
             menu = int(menu)
 
             if menu == 1:
-                file_handler = Register(self.reg() + ".txt")
+                file_handler = Register(self.reg() + ".csv")
                 file_handler.write_to_file("")
             elif menu == 2:
-                file_handler = Register(self.time_in() + ".txt")
+                file_handler = Register(self.time_in() + ".csv")
                 file_name = file_handler.file_name
 
                 if os.path.exists(file_name):
@@ -39,7 +39,7 @@ class TimeClock:
                 else:
                     print('Employee does not exist. Please register your name.')
             elif menu == 3:
-                file_handler = Register(self.time_out() + '.txt')
+                file_handler = Register(self.time_out() + '.csv')
                 file_name = file_handler.file_name
 
                 if os.path.exists(file_name):
