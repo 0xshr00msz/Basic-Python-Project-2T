@@ -27,10 +27,10 @@ class ReadFile:
             menu = int(menu)
 
             if menu == 1:
-                fileHandler = Register(self.reg() + ".csv")
+                fileHandler = Register(self.reg() + ".xlsx")
                 fileHandler.write_to_file("")
             elif menu == 2:
-                fileHandler = Register(self.timeIn() + ".csv")
+                fileHandler = Register(self.timeIn() + ".xlsx")
                 fileHandler = fileHandler.file_name
 
                 if os.path.exists(fileHandler):
@@ -39,7 +39,7 @@ class ReadFile:
                 else:
                     print('Employee does not exist. Please register your name.')
             elif menu == 3:
-                fileHandler = Register(self.timeOut() + '.csv')
+                fileHandler = Register(self.timeOut() + '.xlsx')
                 fileHandler = fileHandler.file_name
 
                 if os.path.exists(fileHandler):
