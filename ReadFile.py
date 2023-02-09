@@ -22,8 +22,7 @@ class ReadFile:
         if reg in self.time_in_data:
             return reg
         else:
-            print("Enter time in first before timing out")
-            return None
+            return reg
 
     def main(self):
         while True:
