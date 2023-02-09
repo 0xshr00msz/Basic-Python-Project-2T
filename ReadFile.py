@@ -29,7 +29,7 @@ class ReadFile:
         while True:
             menu = input('Select your choice \n(1) Register\n(2) Time in\n(3) Time out\n(4) Calculate Pay\n(5) Exit the Terminal\nEnter your Choice: ')
             if not menu.isdigit():
-                print('Invalid input. Please enter a number between 1 and 3.')
+                print('Invalid input. Please enter a number between 1 and 5.')
                 continue
             menu = int(menu)
 
