@@ -1,4 +1,5 @@
 from DTR import Register   # From Register.py file Register Class
+from Payroll import Payroll
 import datetime
 import os
 
@@ -26,7 +27,7 @@ class ReadFile:
 
     def main(self):
         while True:
-            menu = input('Select your choice \n(1) Register\n(2) Time in\n(3) Time out\n(4) Exit the terminal\nEnter your Choice: ')
+            menu = input('Select your choice \n(1) Register\n(2) Time in\n(3) Time out\n(4) Calculate Pay\n(5) Exit the Terminal\nEnter your Choice: ')
             if not menu.isdigit():
                 print('Invalid input. Please enter a number between 1 and 3.')
                 continue
@@ -40,7 +41,7 @@ class ReadFile:
                 fileHandler = Register(name + ".csv")
                 if os.path.exists(fileHandler.file_name):
                     fileHandler.appendDate(self.date.strftime("%m") + "/" + self.date.strftime("%d") + "/" + self.date.strftime("%Y"))
-                    fileHandler.appendTimeIn(self.date.strftime("%I") +  ":" + self.date.strftime("%M") + self.date.strftime("%p"))
+                    fileHandler.appendTimeIn(self.date.strftime("%H") +  ":" + self.date.strftime("%M"))
                 else:
                     print('Employee does not exist. Please register your name.')
             elif menu == 3:
@@ -48,10 +49,14 @@ class ReadFile:
                 if name:
                     fileHandler = Register(name + '.csv')
                     if os.path.exists(fileHandler.file_name):
-                        fileHandler.appendTimeOut(self.date.strftime("%I") +  ":" + self.date.strftime("%M") + self.date.strftime("%p"))
+                        fileHandler.appendTimeOut(self.date.strftime("%H") +  ":" + self.date.strftime("%M"))
                     else:
                         print("Employee does not exist. Please register your name.")
             elif menu == 4:
+                file_name = input("Enter the name of the Employee: ")
+                register = Payroll(file_name)
+                register.read()
+            elif menu == 5:
                 break
 
             goBack = input('Do you want to go back to the menu? (y/n) ')
@@ -61,7 +66,7 @@ class ReadFile:
                 continue
             else:
                 break
-
+                
 if __name__ == "__main__":
     time_clock = ReadFile()
     time_clock.main()
