@@ -1,36 +1,35 @@
-from datetime import datetime   #use the datetime module to detect hours and minutes
+import csv
+import datetime
 
 class Payroll:
-    def __init__(self, name, rate): #initialize the parameters
-        self.name = name
-        self.rate = rate
-    
-    def calculatePay(self, arrival, departure):        #method to calculate the pay
-        hours = (departure - arrival).seconds / 3600    #use .seconds rather than hour to convert the minutes to decimal
-        pay = 0                                         #divide by 3600 to convert to an integer hour
-        if hours > 8:                                   #use to calculate for overtime pay
-            pay = 8 * self.rate
-            overtimeHours = hours - 8
-            overtimePay = overtimeHours * self.rate * 1.25
-            pay += overtimePay
-        else:
-            pay = hours * self.rate
-        return pay                                      
+    def __init__(self, file_name):
+        self.file_name = file_name
+    def read(self):
+        file_name = self.file_name + ".csv"
+        with open(file_name, 'r') as file:
+            reader = csv.reader(file)
+            row_count = 0
+            for row in reader:
+                row_count += 1
+                if row_count == 3:
+                    time_in = row[1]
+                if row_count == 3:
+                    time_out = row[2]
+                    break
+            time_in = datetime.datetime.strptime(time_in, '%H:%M')
+            time_out = datetime.datetime.strptime(time_out, '%H:%M')
+            time_diff = (time_out - time_in).seconds / 3600
 
-def main():
-    name = input("Enter employee name: ")
-    employee = Payroll(name, 10)
-    while True:
-        try:
-            arrival = input("Enter arrival time (HH:MM): ")
-            departure = input("Enter departure time (HH:MM): ")
-            arrival = datetime.strptime(arrival, "%H:%M")           #use the %H:%M to not return an error when inputing 08:00, but accept it
-            departure = datetime.strptime(departure, "%H:%M")       #%H:%M is a format used in the strptime function, expecting 24 hour format
-            break
-        except ValueError:
-            print("Invalid input. Please enter the time in the format HH:MM")
-    pay = employee.calculatePay(arrival, departure)
-    print("Pay for", employee.name, "is $", pay)
+            pay = 0
+            workingHours = 8
+            amountPerHour = 93.75
+            overtimeRate = 1.25
 
-if __name__ == "__main__":
-    main()
+            if time_diff > 8:
+                pay = workingHours * amountPerHour
+                overtimeHours = time_diff - workingHours
+                overtimePay = overtimeHours * amountPerHour * overtimeRate
+                pay += overtimePay
+            else:
+                pay = time_diff * amountPerHour
+            print("The pay for " + self.file_name + " is ₱" + str(pay))

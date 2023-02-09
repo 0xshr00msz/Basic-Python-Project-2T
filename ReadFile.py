@@ -67,7 +67,3 @@ class ReadFile:
                     break
                 else:
                     print("Only input Y/y or N/n")
-                
-if __name__ == "__main__":
-    time_clock = ReadFile()
-    time_clock.main()
