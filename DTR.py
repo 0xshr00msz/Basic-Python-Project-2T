@@ -10,7 +10,6 @@ class Register:
         with open(self.file_name, 'w') as file:
             writer = csv.writer(file)
             writer.writerow(["Date", "Time In", "Time Out"])
-            file.write(text)
     # append date for Time In
     def appendDate(self, text):
         with open(self.file_name, 'a', newline='') as file:
