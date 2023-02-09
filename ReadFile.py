@@ -59,13 +59,14 @@ class ReadFile:
             elif menu == 5:
                 break
 
-            goBack = input('Do you want to go back to the menu? (y/n) ')
-            if goBack.lower() == 'n':
-                break
-            elif goBack.lower() == 'y':
-                continue
-            else:
-                break
+            while True:
+                goBack = input('Do you want to go back to the menu? (y/n) ')
+                if goBack.lower() == 'n':
+                    break
+                elif goBack.lower() == 'y':
+                    break
+                else:
+                    print("Only input Y/y or N/n")
                 
 if __name__ == "__main__":
     time_clock = ReadFile()
