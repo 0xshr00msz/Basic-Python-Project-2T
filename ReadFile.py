@@ -19,10 +19,7 @@ class ReadFile:
 
     def timeOut(self):
         reg = input('Enter your name to time out: ')
-        if reg in self.time_in_data:
-            return reg
-        else:
-            return reg
+        return reg
 
     def main(self):
         while True:
