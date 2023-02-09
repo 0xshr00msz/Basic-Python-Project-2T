@@ -34,9 +34,11 @@ class ReadFile:
             menu = int(menu)
 
             if menu == 1:
+                os.system('cls')
                 fileHandler = Register(self.reg() + ".csv")
                 fileHandler.write_to_file("")
             elif menu == 2:
+                os.system('cls')
                 name = self.timeIn()
                 fileHandler = Register(name + ".csv")
                 if os.path.exists(fileHandler.file_name):
@@ -45,6 +47,7 @@ class ReadFile:
                 else:
                     print('Employee does not exist. Please register your name.')
             elif menu == 3:
+                os.system('cls')
                 name = self.timeOut()
                 if name:
                     fileHandler = Register(name + '.csv')
@@ -53,17 +56,23 @@ class ReadFile:
                     else:
                         print("Employee does not exist. Please register your name.")
             elif menu == 4:
+                os.system('cls')
                 file_name = input("Enter the name of the Employee: ")
                 register = Payroll(file_name)
                 register.read()
             elif menu == 5:
+                os.system('cls')
+                print("Thank you for your service.\n")
                 break
 
             while True:
                 goBack = input('Do you want to go back to the menu? (y/n) ')
                 if goBack.lower() == 'n':
-                    break
+                    os.system('cls')
+                    print("Thank you for your service.\n")
+                    exit()
                 elif goBack.lower() == 'y':
+                    os.system('cls')
                     break
                 else:
                     print("Only input Y/y or N/n")
